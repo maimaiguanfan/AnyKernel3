@@ -217,7 +217,7 @@ do_devicecheck() {
   vendordevice=$(getprop ro.product.vendor.device 2>/dev/null);
   vendorproduct=$(getprop ro.vendor.product.device 2>/dev/null);
   for testname in $(file_getprop anykernel.sh 'device.name.*'); do
-    for devicename in $device $product $vendordevice $vendorproduct; do
+    for devicename in $vendordevice; do
       if [ "$devicename" == "$testname" ]; then
         ui_print "$testname" " ";
         match=1;
