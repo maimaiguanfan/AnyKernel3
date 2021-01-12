@@ -4,19 +4,19 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string= MGF kernel @ github-maimaiguanfan
-do.devicecheck=1
+kernel.string= Pangu kernel @ github-maimaiguanfan
+do.devicecheck=0
 do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=cezanne
-supported.versions=10
+device.name1=
+supported.versions=
 supported.patchlevels=
 '; } # end properties
 
 # shell variables
-block=auto;
+block=/dev/block/bootdevice/by-name/kernel;
 is_slot_device=0;
 ramdisk_compression=auto;
 
@@ -28,23 +28,12 @@ ramdisk_compression=auto;
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
-set_perm_recursive 0 0 755 644 $ramdisk/*;
-set_perm_recursive 0 0 750 750 $ramdisk/init* $ramdisk/sbin;
+
 
 
 ## AnyKernel install
-dump_boot;
+split_boot;
 
-# begin ramdisk changes
-
-# init.rc
-
-# init.tuna.rc
-
-# fstab.tuna
-
-# end ramdisk changes
-
-write_boot;
+flash_boot;
 ## end install
 
